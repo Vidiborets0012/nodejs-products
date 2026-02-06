@@ -3,12 +3,14 @@ import 'dotenv/config';
 import cors from 'cors';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
+import { logger } from './middleware/logger.js';
 
 // import { connectMongoDB } from './db/connectMongoDB.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3030;
 
+app.use(logger);
 app.use(express.json());
 app.use(cors());
 
