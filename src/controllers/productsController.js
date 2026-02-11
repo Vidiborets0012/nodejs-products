@@ -54,3 +54,25 @@ export const createProduct = async (req, res) => {
     data: product,
   });
 };
+
+export const updateProduct = async (req, res) => {
+  const { productId } = req.params;
+
+  const product = await Product.findByIdAndUpdate(
+    // { _id: productId },
+    productId,
+    req.body,
+    { new: true },
+  );
+
+  if (!product) {
+    throw createHttpError(404, 'Product not found');
+  }
+
+  // res.status(200).json(product);
+  res.status(200).json({
+    status: 200,
+    message: 'Successfully updated the product!',
+    data: product,
+  });
+};
