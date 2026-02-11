@@ -44,3 +44,13 @@ export const getProductById = async (req, res) => {
 
 //   res.status(200).json(product);
 // };
+
+export const createProduct = async (req, res) => {
+  const product = await Product.create(req.body);
+  // res.status(201).json(product);
+  res.status(201).json({
+    status: 201,
+    message: 'Successfully created a product!',
+    data: product,
+  });
+};
