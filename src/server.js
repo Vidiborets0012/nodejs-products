@@ -7,6 +7,8 @@ import { logger } from './middleware/logger.js';
 
 import { connectMongoDB } from './db/connectMongoDB.js';
 import productsRoutes from './routes/productsRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import { errors } from 'celebrate';
 
 const app = express();
 const PORT = process.env.PORT ?? 3030;
@@ -15,8 +17,10 @@ app.use(logger);
 app.use(express.json());
 app.use(cors());
 
+app.use(authRoutes);
 app.use(productsRoutes);
 
+app.use(errors());
 app.use(notFoundHandler);
 app.use(errorHandler);
 

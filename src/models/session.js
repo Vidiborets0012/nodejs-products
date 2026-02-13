@@ -12,11 +12,3 @@ const sessionSchema = new Schema(
 );
 
 export const Session = model('Session', sessionSchema);
-
-// Створіть модель сесії Session з такими полями:
-
-// userId - string, required
-// accessToken - string, required
-// refreshToken - string, required
-// accessTokenValidUntil - Date, required
-// refreshTokenValidUntil - Date, required
