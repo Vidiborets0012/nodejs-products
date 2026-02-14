@@ -48,3 +48,18 @@ export const loginUser = async (req, res) => {
 
   res.status(200).json(user);
 };
+
+export const logoutUser = async (req, res) => {
+  const { sessionId, accessToken } = req.cookies;
+
+  if (sessionId) {
+    // Видаляємо лише якщо і ID, і токен збігаються
+    await Session.deleteOne({ _id: sessionId, accessToken });
+  }
+
+  res.clearCookie('sessionId');
+  res.clearCookie('accessToken');
+  res.clearCookie('refreshToken');
+
+  res.status(204).send();
+};
