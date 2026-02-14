@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { logger } from './middleware/logger.js';
@@ -16,6 +17,8 @@ const PORT = process.env.PORT ?? 3030;
 app.use(logger);
 app.use(express.json());
 app.use(cors());
+
+app.use(cookieParser());
 
 app.use(authRoutes);
 app.use(productsRoutes);
